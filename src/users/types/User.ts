@@ -1,7 +1,11 @@
 import { Exclude } from "class-transformer";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class User {
+  @IsNumber()
+  @IsNotEmpty()
+  id: number
+
   @IsString()
   @IsNotEmpty()
   username: string
@@ -12,6 +16,7 @@ export class User {
 }
 
 export class SerializedUser {
+  id: number
   username: string
 
   @Exclude()
