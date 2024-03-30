@@ -28,7 +28,6 @@ export class CustomersService {
   ];
 
   getAllCustomers() {
-    console.log('get all customers')
     return this.customers
   }
 
