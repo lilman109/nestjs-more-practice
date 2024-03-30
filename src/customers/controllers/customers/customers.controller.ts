@@ -8,7 +8,7 @@ export class CustomersController {
   constructor(private customerService: CustomersService) {}
 
   @Get('')
-  getAllCustomers() {
+  getAllCustomers(@Req() req: Request) {
     return this.customerService.getAllCustomers()
   }
 
