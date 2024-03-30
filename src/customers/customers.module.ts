@@ -8,8 +8,10 @@ import { CustomersController } from './controllers/customers/customers.controlle
 import { CustomersService } from './services/customers/customers.service';
 import { ValidateCustomerMiddleware } from './middlewares/validate-custome.middleware';
 import { ValidateCustomerAccountMiddleware } from './middlewares/validate-customer.account.midleware';
+import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [CustomersController],
   providers: [CustomersService],
 })

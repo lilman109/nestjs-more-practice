@@ -1,4 +1,5 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Req, Res, ValidationPipe } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { Request, Response } from 'express';
 import { CreateCustomerDto } from 'src/customers/dto/CreateCustomer.dto';
 import { CustomersService } from 'src/customers/services/customers/customers.service';
@@ -8,7 +9,7 @@ export class CustomersController {
   constructor(private customerService: CustomersService) {}
 
   @Get('')
-  getAllCustomers(@Req() req: Request) {
+  getAllCustomers() {
     return this.customerService.getAllCustomers()
   }
 
@@ -36,7 +37,7 @@ export class CustomersController {
   }
 
   @Post('create')
-  createCustomer(@Body(ValidationPipe) createCustomerDto: CreateCustomerDto) {
-    this.customerService.createCustomer(createCustomerDto)
+  createCustomer(@Body() createCustomerDto: Prisma.CustomerCreateInput) {
+    return this.customerService.createCustomer(createCustomerDto)
   }
 }
