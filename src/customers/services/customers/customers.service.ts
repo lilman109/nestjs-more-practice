@@ -18,6 +18,14 @@ export class CustomersService {
     });
   }
 
+  findCustomerByName(email: string ) {
+    return this.dataService.customer.findUnique({
+      where: {
+       email: email 
+      }
+    })
+  }
+
   createCustomer(createCustomerDto: Prisma.CustomerCreateInput) {
     return this.dataService.customer.create({ data: createCustomerDto });
   }
