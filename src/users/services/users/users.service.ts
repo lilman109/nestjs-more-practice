@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
 import { SerializedUser, User } from 'src/users/types/User';
+import { encodePassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -52,8 +53,13 @@ export class UsersService {
   }
 
   async createUser(createUserDto: Prisma.UserCreateInput) {
+    const password = encodePassword(createUserDto.password) 
+    console.log("password", password)
     return await this.dataService.user.create({
-      data: createUserDto
+      data: {
+        ...createUserDto,
+        password
+      }
     })
   }
 }
