@@ -35,6 +35,7 @@ export class UsersService {
   }
 
   async getUserByUsername(username: string) {
+    console.log("find user by", username)
    return await this.dataService.user.findFirst({
       where: {
         username
